@@ -1,5 +1,6 @@
 # Environment variables
 .env
 
-# Upload folder
-uploads/
+
+backend/uploads/*
+!backend/uploads/.gitkeep
