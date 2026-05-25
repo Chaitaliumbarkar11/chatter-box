@@ -1,4 +1,4 @@
-hatterBox 💬
+ChatterBox 💬
 
 A modern real-time chatting application built using the MERN Stack.
 ChatterBox allows users to chat instantly with a responsive and user-friendly interface.
