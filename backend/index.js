@@ -13,10 +13,16 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://chatterbox11.netlify.app",
+];
+
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
   },
 });
 
@@ -26,8 +32,9 @@ const onlineUsers = new Map(); // userId -> socketId
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
   })
 );
 app.use(express.json({ limit: "20mb" })); // increased for file sharing
