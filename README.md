@@ -16,7 +16,6 @@ HTML5
 CSS3
 JavaScript
 
-
 Backend
 Node.js
 Express.js
@@ -42,14 +41,11 @@ MongoDB
 ChatterBox/
 
 │
-├── client/  
-# Frontend (React)
+├── client/  # Frontend (React)
 │
-├── server/  
-# Backend (Node.js + Express)
+├── server/  # Backend (Node.js + Express)
 │
 ├── package.json
-
 └── README.md
 
 
