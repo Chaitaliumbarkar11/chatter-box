@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+const API_BASE = process.env.REACT_APP_API_URL || 'https://chatter-box-1-1qc6.onrender.com/api';
 const AddContact = ({ setUsers, users }) => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [success, setSuccess] = useState("");
@@ -26,10 +26,8 @@ const AddContact = ({ setUsers, users }) => {
     setLoading(true);
 
     try {
-      // 1. Look up user by email
-      const res = await fetch(
-        `http://localhost:5001/api/auth/user-by-email/${email}`
-      );
+      const res = await fetch(`${API_BASE}/auth/user-by-email/${email}`);
+
       const data = await res.json();
 
       if (!data.success) {
@@ -55,8 +53,8 @@ const AddContact = ({ setUsers, users }) => {
       }
 
       // 3. Persist to DB
-      await fetch("http://localhost:5001/api/auth/add-contact", {
-        method: "POST",
+await fetch(`${API_BASE}/auth/add-contact`, {
+          method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           userId: currentUser._id,

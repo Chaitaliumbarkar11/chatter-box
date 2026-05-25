@@ -126,8 +126,8 @@ export default function Settings() {
     ) {
       const token = localStorage.getItem("token");
       const user = JSON.parse(localStorage.getItem("user"));
-      fetch(`http://localhost:5001/api/auth/delete-account/${user._id}`, {
-        method: "DELETE",
+fetch(`${process.env.REACT_APP_API_URL}/auth/delete-account/${user._id}`, {
+          method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(() => {

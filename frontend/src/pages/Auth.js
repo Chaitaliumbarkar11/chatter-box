@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../style/Auth.css";
 
-
+const API = "https://chatter-box-1-1qc6.onrender.com/api/auth";
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(false);
 
@@ -15,7 +15,6 @@ export default function Auth() {
   const [lemail, setLemail] = useState("");
   const [lpass, setLpass] = useState("");
 
-  const API = "http://localhost:5001/api/auth";
 
   // REGISTER
   const register = async () => {

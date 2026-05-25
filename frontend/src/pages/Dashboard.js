@@ -22,7 +22,7 @@ function playNotifSound() {
     o.stop(ctx.currentTime + 0.3);
   } catch (_) {}
 }
-
+const API_BASE = "https://chatter-box-1-1qc6.onrender.com";
 // ── Format lastSeen nicely ────────────────────────────────────────────────
 function formatLastSeen(dateStr) {
   if (!dateStr) return "";
@@ -51,6 +51,7 @@ function formatFileSize(bytes) {
 const EMOJI_LIST = ["👍", "❤️", "😂", "😮", "😢", "🔥", "🎉", "👏", "🙌", "💯"];
 
 export default function Dashboard() {
+  
   const typingTimeout = useRef(null);
   const navigate = useNavigate();
   const storedUser = localStorage.getItem("user");
@@ -122,7 +123,7 @@ const getNotifPref = (key) => {
     socket.connect();
     socket.emit("join", currentUser._id);
 
-    fetch(`http://localhost:5001/api/auth/contacts/${currentUser._id}`)
+  fetch(`${API_BASE}/api/auth/contacts/${currentUser._id}`)
       .then((r) => r.json())
       .then(({ success, contacts }) => {
         if (!success || !contacts?.length) return;
@@ -556,7 +557,7 @@ const handleInputChange = (e) => {
     if (!String(msgId).startsWith("temp_")) {
       try {
         const token = localStorage.getItem("token");
-        await fetch(`http://localhost:5001/api/auth/messages/${msgId}`, {
+       await fetch(`${API_BASE}/api/auth/messages/${msgId}`, {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -612,7 +613,7 @@ const handleInputChange = (e) => {
     if (user?.avatar)
       return (
         <img
-          src={`http://localhost:5001${user.avatar}`}
+         src={`${API_BASE}${user.avatar}`}
           alt={user.name}
           style={{
             width: "100%",
@@ -963,7 +964,7 @@ const handleInputChange = (e) => {
                   >
                     {selectedUser.avatar ? (
                       <img
-                        src={`http://localhost:5001${selectedUser.avatar}`}
+                       src={`${API_BASE}${selectedUser.avatar}`}
                         alt={selectedUser.name}
                         style={{
                           width: "100%",
